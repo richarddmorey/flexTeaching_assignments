@@ -1,0 +1,81 @@
+
+```{r solutions, echo=FALSE}
+# This is optional to prevent annoying errors when deploying shiny apps
+if(!exists(".flexteach_solutions"))
+  .flexteach_solutions = FALSE
+```
+
+```{r, setup}
+## See https://bookdown.org/yihui/rmarkdown-cookbook/rgl-3d.html
+library(rgl)
+knitr::knit_hooks$set(webgl = hook_webgl)
+```
+
+This demo assignment demonstrates the loading of a page in an `iframe` using the `srcdoc` attribute, so that the assignment is rendered as a complete webpage. This allows things like `htmlwidgets` to be run in the page without using extra javascript (just as it would be rendered locally).
+
+This has several slight downsides:
+
+* The pages are rendered somewhat slower and are larger, because a full webpage is rendered instead of a fragment
+* The assignment is isolated from the rest of the app; so, for instance, buttons cannot be moved from inside the assignment to the top button bar.
+
+If you want interactive javascript apps without these downsides, you'd need to work out what javascript should run when the page loads and run it using the `on-load` yaml option for the assignment (see the [wiki](https://github.com/richarddmorey/flexTeaching/wiki/Creating-assignments)).
+
+The key to making this assignment work is rendering the page with the `compileAssignmentHtml_iframe()` function in `R/utility.R`.
+
+## Test some `htmlwidgets`
+
+### DiagrammeR
+
+See https://rich-iannone.github.io/DiagrammeR/
+
+```{r echo=FALSE}
+DiagrammeR::grViz("flexTeach.gv", height=400)
+```
+
+### rgl
+
+See https://bookdown.org/yihui/rmarkdown-cookbook/rgl-3d.html.
+
+```{r, test-rgl, webgl=TRUE}
+x <- sort(rnorm(1000))
+y <- rnorm(1000)
+z <- rnorm(1000) + atan2(x,y)
+plot3d(x, y, z, col = rainbow(1000))
+```
+
+### graph3d
+
+See https://github.com/stla/graph3d
+
+```{r echo=FALSE}
+# bivariate Gaussian density ####
+dat <- expand.grid(
+x = seq(-4,4,length.out=100),
+y = seq(-4,4,length.out=100)
+)
+dat <- transform(dat, density = dnorm(x)*dnorm(y))
+graph3d::graph3d(dat, z = ~density, keepAspectRatio = FALSE, verticalRatio = 1)
+```
+
+### sigmaNet
+
+See https://iankloo.github.io/sigmaNet/
+
+```{r echo=FALSE, message=FALSE}
+library(sigmaNet)
+library(igraph)
+
+data(lesMis)
+
+clust <- cluster_edge_betweenness(lesMis)$membership
+V(lesMis)$group <- clust
+
+layout <- layout_with_fr(lesMis)
+
+sig <- sigmaFromIgraph(lesMis, layout = layout) %>%
+  addNodeLabels(labelAttr = 'label') %>%
+  addEdgeSize(sizeAttr = 'value', minSize = .1, maxSize = 2) %>%
+  addNodeSize(sizeMetric = 'degree', minSize = 2, maxSize = 8) %>%
+  addNodeColors(colorAttr = 'group', colorPal = 'Set1')
+sig
+```

@@ -1,0 +1,77 @@
+
+digraph seeds {
+
+  # a 'graph' statement
+  graph [overlap = true, fontsize = 10]
+
+  node [shape = box,
+        fontname = Helvetica,
+        fontcolor=black]
+  
+  subgraph {
+  node [shape = box,
+        fontname = Helvetica,
+        fontcolor=black]
+  
+  node [fillcolor=LavenderBlush,
+        color = LightGray,
+        style=filled]
+  C1 [label='Chunk 1'] C2 [label='Chunk 2'];
+
+  # several 'node' statements
+  node [fillcolor = white,
+        color = white,
+        label = '...']
+  C0 C3;
+  
+  node [color=white, label='Without solutions',
+        fontcolor=black, fontsize=18]
+  title;
+  
+  # several 'edge' statements
+  title->C0 [color=white]
+  C0->C1 [label=' RNG state A']; 
+  C1->C2 [label=' RNG state B'];
+  C2->C3 [label=' RNG state C'];
+  }
+  
+  subgraph {
+    node [fillcolor=white,
+        color = white,
+        fontcolor=white,
+        style=filled]
+  empty [label='------SPACER------']  
+  }
+  
+  
+  subgraph {
+
+  node [fillcolor=LavenderBlush,
+        color = LightGray,
+        style=filled]
+  C1a [label='Chunk 1'] C2a [label='Chunk 2'];
+
+  node [fillcolor=LightSteelBlue,
+        color = LightGray,
+        style=filled]
+  S1a [label='Solution chunk 1']
+
+  # several 'node' statements
+  node [fillcolor = white,
+        color = white,
+        label = '...']
+  C0a C3a;
+
+  node [color=white, label='With solutions',
+        fontcolor=black, fontsize=18]
+  titlea;
+  
+  # several 'edge' statements
+  titlea->C0a [color=white];
+  C0a->C1a [label=' RNG state A']; 
+  C1a->S1a [label=' RNG state B'];
+  S1a->C2a [label=' RNG state X'];
+  C2a->C3a [label=' RNG state Y'];
+
+  }
+}

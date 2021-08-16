@@ -1,0 +1,15 @@
+::: {.ft_solutions}
+
+### Solutions, block 3
+
+This code chunk uses the `jitter` function, which uses the random number generator. 
+
+
+```{r out.width="30%"}
+x = 1:20
+plot(x, jitter(x, factor = 3))
+```
+
+Because this child chunk is always executed, it has the same effect on the random number generator regardless of whether it is shown. The chunk is only shown when solutions are requested.
+
+:::

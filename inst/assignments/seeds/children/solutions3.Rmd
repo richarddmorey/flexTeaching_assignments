@@ -1,0 +1,14 @@
+::: {.ft_solutions}
+
+### Solutions, block 5
+
+This code chunk uses the `jitter` function, which uses the random number generator. 
+
+```{r out.width="30%"}
+x = 1:20
+plot(x, jitter(x, factor = 3))
+```
+
+Because this child chunk was **not** executed with the option `seed.status='reset'`, once the chunk has been executed, the seed will be different from what it would be had it not been executed. Any random numbers generated subsequent to this chunk will be different when this chunk is executed, from when it is not.
+
+:::

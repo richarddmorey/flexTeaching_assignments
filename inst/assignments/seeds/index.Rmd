@@ -1,0 +1,97 @@
+
+```{r solutions, echo=FALSE}
+# This is optional to prevent annoying errors when deploying shiny apps
+if(!exists(".flexteach_solutions"))
+  .flexteach_solutions = FALSE
+```
+
+
+If chunks can be included optionally, as we do for chunks with solutions in them, there is a potential for chunks to become unreproducible due to the random number generator (RNG) state being changed by an intervening chunk. Later chunks that also use the RNG will then have values that depend on whether the intervening chunk is run or not. 
+
+```{r echo=FALSE, out.width="40%", fig.cap="How including an intervening chunk can change the random seed state, assuming its code uses the random number generator somehow."}
+
+tf = tempfile(fileext = ".png")
+
+DiagrammeR::grViz(diagram = "gv/seeds.gv") %>% 
+  DiagrammeRsvg::export_svg() %>%
+  charToRaw() %>% 
+  rsvg::rsvg_png(file = tf, width = 1024)
+
+knitr::include_graphics(tf)
+
+```
+
+There are two main ways of preventing this.
+
+* **Reset the random seed after optional chunks**. `flexTeaching` provides a chink hook, `seed.status`, that when set to `reset` will reset the random seed after the execution of the chunk. The optional chunk will therefore not have any effect on later chunks.
+
+* **Always generate random chunks; display them only when needed**. If the random chunks are always executed, then every chunk will always have the same random state. This is undesireable, though, in situations where the optional chunks take time to execute.
+
+## The right way, option 1
+
+### Block 1
+
+```{r}
+rnorm(1)
+```
+
+
+```{r eval = .flexteach_solutions, child="children/solutions1.Rmd", seed.status="reset"}
+```
+
+### Block 2
+
+```{r}
+rnorm(1)
+```
+
+## The right way, option 2
+
+We can also execute solution chunks, but not *include* them when we're not showing the solutions. This has the downside of running unnecessary code, which may be time consuming.
+
+### Block 3
+
+```{r}
+rnorm(1)
+```
+
+
+```{r include = .flexteach_solutions, results='asis'}
+## The "include" option is incompatible with the "child" option, 
+## so we use knit_child and 'asis' output instead.
+knitr::knit_child(
+  "children/solutions2.Rmd",
+  quiet=TRUE,
+  envir = environment() # include the current environment
+  ) %>%
+  cat()
+```
+
+### Block 4
+
+```{r}
+rnorm(1)
+```
+
+
+## The wrong way: showing the problem
+
+### Block 5
+
+```{r}
+rnorm(1)
+```
+
+
+```{r eval = .flexteach_solutions, child="children/solutions3.Rmd"}
+```
+
+### Block 6
+
+The random number below will have a value that depends on whether solutions are displayed. 
+
+```{r}
+rnorm(1)
+```
+
+

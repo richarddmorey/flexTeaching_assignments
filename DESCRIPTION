@@ -1,0 +1,36 @@
+Package: FTassignments
+Type: Package
+Title: Demo assignments for flexTeaching
+Version: 0.2
+Date: 2021-08-11
+Author: Richard D. Morey
+Maintainer: Richard D. Morey <richarddmorey@gmail.com>
+Description: A set of demo assignments for flexTeaching
+License: MIT
+Encoding: UTF-8
+StagedInstall: no
+Depends:
+    R (>= 4.1.0)
+Imports:
+    flexTeaching,
+    digest,
+    glue,
+    rmarkdown,
+    MASS,
+    withr,
+    zip,
+    QuantPsyc,
+    tidyr,
+    broom,
+    gt,
+    settings,
+    rsvg,
+    magick,
+    knitr,
+    DiagrammeR,
+    DiagrammeRsvg,
+    rgl,
+    graph3d,
+    sigmaNet,
+    igraph
+RoxygenNote: 7.1.1

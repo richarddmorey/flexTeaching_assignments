@@ -1,0 +1,44 @@
+digraph flexTeach {
+
+  # a 'graph' statement
+  graph [layout = dot, overlap = false, 
+         fontsize = 10, rankdir = LR]
+
+  node [shape = box,
+        fontname = <Roboto Condensed>,
+        fillcolor = '#d3374a',
+        fontcolor = white,
+        style=filled]
+  Assignment;
+  Data [label = <Random data>];
+  ID [label = <Student ID>]
+
+  node [shape = box,
+        fontname = <Roboto Condensed>,
+        fillcolor = '#d3d3d2',
+        fontcolor = black
+        ]
+  Solutions;
+  Secret;
+  MasterSecret [label = <Master secret>];
+  
+  node [shape = box,
+        fontname = <Roboto Condensed>,
+        fillcolor = '#22211f',
+        fontcolor = white]
+  Seed;
+  AssignmentSalt [label = <Assignment Salt>]
+    
+  node [fillcolor = white,
+        color = white,
+        fontcolor=white]
+  
+  # several 'edge' statements
+  edge [fontname = 'Roboto Condensed', color = black]
+  Data -> {Assignment Solutions}
+  Seed -> Data 
+  {Secret ID} -> Seed 
+  {AssignmentSalt MasterSecret} -> Secret
+
+  edge [penwidth=0,arrowhead=none]
+}
