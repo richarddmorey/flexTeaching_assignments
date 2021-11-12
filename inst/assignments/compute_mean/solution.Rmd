@@ -1,0 +1,11 @@
+
+```{r echo=FALSE}
+y |> sum() -> S
+y |> mean() |> round(3) -> M
+```
+
+To take the mean of `r knitr::combine_words(y)`, we:
+
+1. add up the numbers: `r paste(y, collapse=' + ')` = `r S`, then
+2. divide by the total count of numbers you added up in step (1): `r S`/`r N` = `r M`, then
+3. report the mean: `r M`.

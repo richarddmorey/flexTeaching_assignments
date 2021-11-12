@@ -1,0 +1,16 @@
+
+```{r solutions, echo=FALSE}
+# This is optional to prevent annoying errors when deploying shiny apps
+if(!exists(".flexteach_solutions"))
+  .flexteach_solutions = FALSE
+```
+
+```{r echo=FALSE}
+N <- 4
+y <- sample.int(100, size = N)
+```
+
+Compute the mean of `r knitr::combine_words(y)`.
+
+```{r eval=.flexteach_solutions, child='solution.Rmd'}
+```
