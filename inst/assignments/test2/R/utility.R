@@ -58,13 +58,7 @@ create_pdf <- function(assignment_data, id, seed, solutions, format, init, entry
         quiet = !.DEBUG, clean = !.DEBUG 
       )
       d = readBin(con = tmpfn, what = "raw", n = file.size(tmpfn))
-      time = format(Sys.time(), "%d%m%Y_%H%M%S")
-      fn = ifelse(entry=="solve",
-                  # Use sprintf instead of glue::glue to prevent code injection vulnerability
-                  sprintf("%s_practice_%s_%s_%s.pdf", assignment_data$shortname, id, seed, time),
-                  sprintf("%s_assignment_%s_%s.pdf", assignment_data$shortname, id, time)
-      )
-      return(list(fn = fn, d = d))
+      return(list(fn = tmpfn, d = d))
     },
     ## On error, pack up the whole folder and send it. This should probably
     ## only be done while debugging, so I've started with a stop() call that
@@ -82,15 +76,32 @@ create_pdf <- function(assignment_data, id, seed, solutions, format, init, entry
   )
 }
 
+pdf_name <- function(assignment_data, id, seed, solutions, format, init, entry){
+  
+  time = format(Sys.time(), "%d%m%Y_%H%M%S")
+  fn = ifelse(entry=="solve",
+              # Use sprintf instead of glue::glue to prevent code injection vulnerability
+              sprintf("%s_practice_%s_%s_%s.pdf", assignment_data$shortname, id, seed, time),
+              sprintf("%s_assignment_%s_%s.pdf", assignment_data$shortname, id, time)
+  )
+  
+  return(fn)
+
+}
+
+
+
 buttons <- list(
   data = list(
     label = "Download data",
     icon = "download",
-    f = data_file
+    f = data_file,
+    fn = data_file_name
   ),
   pdf = list(
     label = "Download PDF",
     icon = "file-download",
-    f = create_pdf
+    f = create_pdf,
+    fn = pdf_name
   )
 )

@@ -5,7 +5,8 @@ if(!exists(".flexteach_solutions"))
   .flexteach_solutions = FALSE
 ```
 
-```{r, setup}
+```{r, setup, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 ## See https://bookdown.org/yihui/rmarkdown-cookbook/rgl-3d.html
 library(rgl)
 knitr::knit_hooks$set(webgl = hook_webgl)
@@ -28,7 +29,7 @@ The key to making this assignment work is rendering the page with the `compileAs
 
 See https://rich-iannone.github.io/DiagrammeR/
 
-```{r echo=FALSE}
+```{r}
 DiagrammeR::grViz("flexTeach.gv", height=400)
 ```
 
@@ -36,7 +37,9 @@ DiagrammeR::grViz("flexTeach.gv", height=400)
 
 See https://bookdown.org/yihui/rmarkdown-cookbook/rgl-3d.html.
 
-```{r, test-rgl, webgl=TRUE}
+This does not seem to work. I reported the (apparent) bug here: https://github.com/dmurdoch/rgl/issues/127
+
+```{r eval = FALSE}
 x <- sort(rnorm(1000))
 y <- rnorm(1000)
 z <- rnorm(1000) + atan2(x,y)
@@ -47,7 +50,7 @@ plot3d(x, y, z, col = rainbow(1000))
 
 See https://github.com/stla/graph3d
 
-```{r echo=FALSE}
+```{r}
 # bivariate Gaussian density ####
 dat <- expand.grid(
 x = seq(-4,4,length.out=100),
@@ -61,7 +64,7 @@ graph3d::graph3d(dat, z = ~density, keepAspectRatio = FALSE, verticalRatio = 1)
 
 See https://iankloo.github.io/sigmaNet/
 
-```{r echo=FALSE, message=FALSE}
+```{r message=FALSE}
 library(sigmaNet)
 library(igraph)
 

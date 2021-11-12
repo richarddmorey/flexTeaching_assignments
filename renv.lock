@@ -212,6 +212,13 @@
       "Repository": "CRAN",
       "Hash": "e75525c55c70e5f4f78c9960a4b402e9"
     },
+    "crosstalk": {
+      "Package": "crosstalk",
+      "Version": "1.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "2b06f9e415a62b6762e4b8098d2aecbc"
+    },
     "curl": {
       "Package": "curl",
       "Version": "4.3.2",
@@ -278,8 +285,14 @@
     "flexTeaching": {
       "Package": "flexTeaching",
       "Version": "0.2",
-      "Source": "unknown",
-      "Hash": "f6af662f76600862b76e937d28ab0912"
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "flexTeaching",
+      "RemoteUsername": "richarddmorey",
+      "RemoteRef": "ver2_combine",
+      "RemoteSha": "e1f446a798ac6753885c48e793eaf278636457a4",
+      "Hash": "260943285c45e44a979960cb9d67ab55"
     },
     "flexdashboard": {
       "Package": "flexdashboard",
@@ -322,6 +335,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "6efd734b14c6471cfe443345f3e35e29"
+    },
+    "graph3d": {
+      "Package": "graph3d",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "d92a14068a37619ef64d086d65d99ed2"
     },
     "gridExtra": {
       "Package": "gridExtra",
@@ -444,10 +464,10 @@
     },
     "later": {
       "Package": "later",
-      "Version": "1.2.0",
+      "Version": "1.3.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "b61890ae77fea19fc8acadd25db70aa4"
+      "Hash": "7e7b457d7766bc47f2a5f21cc2984f8e"
     },
     "lattice": {
       "Package": "lattice",
@@ -455,6 +475,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "fbd9285028b0263d76d18c95ae51a53d"
+    },
+    "lazyeval": {
+      "Package": "lazyeval",
+      "Version": "0.2.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "d908914ae53b04d4c0c0fd72ecc35370"
     },
     "lifecycle": {
       "Package": "lifecycle",
@@ -589,6 +616,13 @@
       "Repository": "CRAN",
       "Hash": "079cb1f03ff972b30401ed05623cbe92"
     },
+    "rgl": {
+      "Package": "rgl",
+      "Version": "0.107.10",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c8fb4daf62e792d76760c95784aaa32a"
+    },
     "rlang": {
       "Package": "rlang",
       "Version": "0.4.11",
@@ -665,6 +699,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "9ddfc91d4280eaa34c2103951538976f"
+    },
+    "sigmaNet": {
+      "Package": "sigmaNet",
+      "Version": "1.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "8fbc231e1fb4849b1917c61ef72ee48c"
     },
     "sourcetools": {
       "Package": "sourcetools",

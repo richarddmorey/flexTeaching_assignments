@@ -1,0 +1,13 @@
+
+```{r solutions, echo=FALSE}
+# This is optional to prevent annoying errors when deploying shiny apps
+if(!exists(".flexteach_solutions"))
+  .flexteach_solutions = FALSE
+```
+
+```{r}
+delay = 10
+Sys.sleep(delay)
+```
+
+This is a minimal demo, tweaked to take a `r delay` seconds to compile.

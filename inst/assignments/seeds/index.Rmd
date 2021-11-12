@@ -5,6 +5,10 @@ if(!exists(".flexteach_solutions"))
   .flexteach_solutions = FALSE
 ```
 
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
 
 If chunks can be included optionally, as we do for chunks with solutions in them, there is a potential for chunks to become unreproducible due to the random number generator (RNG) state being changed by an intervening chunk. Later chunks that also use the RNG will then have values that depend on whether the intervening chunk is run or not. 
 
@@ -23,7 +27,7 @@ knitr::include_graphics(tf)
 
 There are two main ways of preventing this.
 
-* **Reset the random seed after optional chunks**. `flexTeaching` provides a chink hook, `seed.status`, that when set to `reset` will reset the random seed after the execution of the chunk. The optional chunk will therefore not have any effect on later chunks.
+* **Reset the random seed after optional chunks**. `flexTeaching` provides a chunk hook, `seed.status`, that when set to `reset` will reset the random seed after the execution of the chunk. The optional chunk will therefore not have any effect on later chunks.
 
 * **Always generate random chunks; display them only when needed**. If the random chunks are always executed, then every chunk will always have the same random state. This is undesireable, though, in situations where the optional chunks take time to execute.
 

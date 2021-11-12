@@ -28,6 +28,7 @@ buttons <- list(
   data = list(
     label = "Download data",
     icon = "download",
-    f = data_file
+    f = data_file,
+    fn = data_file_name
   )
 )
